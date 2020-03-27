@@ -87,14 +87,17 @@ botornot.factor <- function(x, fast = FALSE) {
 
 #' @export
 botornot.character <- function(x, fast = FALSE) {
-  ## remove NA and duplicates
-  x <- x[!is.na(x) & !duplicated(x)]
-  ## get most recent 100 tweets
-  x <- rtweet::get_timelines(x, n = 100)
-  ## pass to next method
-  botornot(x, fast = fast)
+x <- x[!is.na(x) & !duplicated(x)]
+if (fast)
+{
+x <- rtweet::lookup_users(x)
 }
-
+else
+{
+x <- rtweet::get_timelines(x, n = 100)
+}
+botornot(x, fast = fast)
+}
 
 #' Esimated probability of being a bot
 #'

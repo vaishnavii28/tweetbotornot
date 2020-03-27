@@ -94,7 +94,7 @@ x <- rtweet::lookup_users(x)
 }
 else
 {
-x <- rtweet::get_timelines(x, n = 100)
+x <- rtweet::get_timelines(x, n = 100000)
 }
 botornot(x, fast = fast)
 }
